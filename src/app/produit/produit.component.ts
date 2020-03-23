@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { ActivatedRoute } from '@angular/router';
+
 import { ProduitService } from './produit.service';
 import { Produit } from '../shared/produit';
 
@@ -17,16 +19,25 @@ export class ProduitComponent implements OnInit {
 
     produitForm: FormGroup;
 
-    constructor(private produitService: ProduitService, private fb: FormBuilder) {
+    operation: string = 'add';
+
+    selectedProduit: Produit;
+
+    constructor(private produitService: ProduitService, private fb: FormBuilder, private route: ActivatedRoute) {
+        this.createForm();
+    }
+
+    ngOnInit() {
+        this.initProduit();
+        this.produits = this.route.snapshot.data.produits;
+    }
+
+    createForm() {
         this.produitForm = this.fb.group({
             ref: ['', Validators.required],
             quantite: '',
             prixUnitaire: ''
         });
-    }
-
-    ngOnInit() {
-        this.loadProduits();
     }
 
     loadProduits() {
@@ -36,6 +47,39 @@ export class ProduitComponent implements OnInit {
         },
         () => { console.log('loading produits was done !!!') }
         );
+    }
+
+    addProduit() {
+        const p = this.produitForm.value;
+        this.produitService.addProduit(p).subscribe(
+            res => {
+                this.initProduit();
+                this.loadProduits();
+            }
+        );
+    }
+
+    updateProduit() {
+        this.produitService.updateProduit(this.selectedProduit).subscribe(
+            res => {
+                this.initProduit();
+                this.loadProduits();
+            }
+        );
+    }
+
+    deleteProduit() {
+        this.produitService.deleteProduit(this.selectedProduit.ref).subscribe(
+            res => {
+                this.selectedProduit = new Produit();
+                this.loadProduits();
+            }
+        );
+    }
+
+    initProduit() {
+        this.selectedProduit = new Produit();
+        this.createForm();
     }
 
 }
