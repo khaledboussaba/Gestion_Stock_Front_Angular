@@ -5,7 +5,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ProduitResolver } from './produit/produit.resolver';
 
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
 export const appRoutes: Routes = [
+    {
+        path: 'login', 
+        component: LoginComponent
+    },
+    {
+        path: 'home', 
+        component: HomeComponent
+    },
     {
         path: 'produit',
         component: ProduitComponent, 
@@ -13,8 +24,15 @@ export const appRoutes: Routes = [
             produits : ProduitResolver
         }
     },
-    {path: 'dashboard', component: DashboardComponent},
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+    {
+        path: 'dashboard', 
+        component: DashboardComponent
+    },
+    {
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full'
+    }
 ];
 
 @NgModule({

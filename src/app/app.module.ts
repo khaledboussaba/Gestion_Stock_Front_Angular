@@ -15,6 +15,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AppRoutingModule } from './app.routing.module';
 import { ProduitService } from './produit/produit.service';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -25,6 +29,8 @@ import { ProduitService } from './produit/produit.service';
     SidebarComponent,
     ContentComponent,
     DashboardComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,8 @@ import { ProduitService } from './produit/produit.service';
   ],
   providers: [
     ProduitMockService,
-    ProduitService
+    ProduitService,
+    AppService
   ],
   bootstrap: [AppComponent]
 })
