@@ -41,7 +41,7 @@
                             <label>Prix Unitaire</label>
                             <input type="number" class="form-control" formControlName="prixUnitaire" />
                         </div>
-                        <button class="btn btn-success" [disabled]='produitForm.prestine || produitForm.invalid'>Ajouter</button>
+                        <button class="btn btn-success" [disabled]='produitForm.pristine || produitForm.invalid'>Ajouter</button>
                     </form>
                 </div>
                 <div class="card-footer">
