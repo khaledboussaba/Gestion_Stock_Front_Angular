@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 
@@ -19,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AppService } from './app.service';
+import { HxrInterceptor } from 'src/xhr.interceptor';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { AppService } from './app.service';
   providers: [
     ProduitMockService,
     ProduitService,
-    AppService
+    AppService,
+    {provide: HTTP_INTERCEPTORS, useClass: HxrInterceptor, multi: true},
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

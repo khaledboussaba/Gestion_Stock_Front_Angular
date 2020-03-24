@@ -10,8 +10,6 @@ import { AppService } from './app.service';
 })
 export class AppComponent implements OnInit {
 
-  showHideSideBar: boolean = false;
-
   constructor(private appService: AppService, private router: Router) {}
 
   ngOnInit() {
@@ -20,10 +18,6 @@ export class AppComponent implements OnInit {
     } else {
       this.router.navigateByUrl('/home');
     }
-  }
-
-  onShowSideBarChange(showHideSideBar) {
-    this.showHideSideBar = showHideSideBar;
   }
   
 }

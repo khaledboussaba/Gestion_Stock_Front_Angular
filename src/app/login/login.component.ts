@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.appService.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home/(contentOutlet:produit)');
     })
   }
 
