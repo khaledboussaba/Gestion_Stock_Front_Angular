@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 
 import { AppService } from './app.service';
 import { HxrInterceptor } from 'src/xhr.interceptor';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HxrInterceptor } from 'src/xhr.interceptor';
     DashboardComponent,
     LoginComponent,
     HomeComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
